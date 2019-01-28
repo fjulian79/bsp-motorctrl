@@ -5,8 +5,8 @@
  *      Author: julian
  */
 
-#ifndef BSP_NUCLEO_F103_TTY_H_
-#define BSP_NUCLEO_F103_TTY_H_
+#ifndef BSP_MOTORCTRL_TTY_H_
+#define BSP_MOTORCTRL_TTY_H_
 
 #include "bsp/bsp.h"
 
@@ -43,4 +43,4 @@ bool bspTTYDataAvailable(void);
  */
 char bspTTYGetChar(void);
 
-#endif /* BSP_NUCLEO_F103_TTY_H_ */
+#endif /* BSP_MOTORCTRL_TTY_H_ */

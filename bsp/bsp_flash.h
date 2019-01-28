@@ -5,8 +5,8 @@
  *      Author: julian
  */
 
-#ifndef BSP_NUCLEO_F103_FLASH_H_
-#define BSP_NUCLEO_F103_FLASH_H_
+#ifndef BSP_MOTORCTRL_FLASH_H_
+#define BSP_MOTORCTRL_FLASH_H_
 
 #include "bsp/bsp.h"
 
@@ -107,4 +107,4 @@ bspStatus_t bspFlashErasePage(uint32_t addr);
   */
 bspStatus_t bspFlashWaitForLastOperation(uint32_t timeout);
 
-#endif /* BSP_NUCLEO_F103_FLASH_H_ */
+#endif /* BSP_MOTORCTRL_FLASH_H_ */

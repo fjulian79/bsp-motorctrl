@@ -5,8 +5,8 @@
  *      Author: julian
  */
 
-#ifndef BSP_NUCLEO_F103_GPIO_H_
-#define BSP_NUCLEO_F103_GPIO_H_
+#ifndef BSP_MOTORCTRL_GPIO_H_
+#define BSP_MOTORCTRL_GPIO_H_
 
 #include <stm32f1xx_ll_gpio.h>
 
@@ -164,4 +164,4 @@ void bspGpioWrite(
 bool bspGpioRead(
         bspGpioPin_t pin);
 
-#endif /* BSP_NUCLEO_F103_GPIO_H_ */
+#endif /* BSP_MOTORCTRL_GPIO_H_ */

@@ -5,8 +5,8 @@
  *      Author: julian
  */
 
-#ifndef BSP_NUCLEO_F103_H_
-#define BSP_NUCLEO_F103_H_
+#ifndef BSP_MOTORCTRL_H_
+#define BSP_MOTORCTRL_H_
 
 #include "bsp_config.h"
 
@@ -186,4 +186,4 @@ void bspDelayMs(uint32_t delay);
 void bspChipInit(
       void);
 
-#endif /* BSP_NUCLEO_F103_H_ */
+#endif /* BSP_MOTORCTRL_H_ */
