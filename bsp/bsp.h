@@ -17,13 +17,27 @@
 /**
  * Special GPIO Pin definitions
  */
-#ifndef BSP_GPIO_A5
 #define BSP_GPIO_A5                         BSP_GPIO_LED
-#endif
-
-#ifndef BSP_GPIO_C13
 #define BSP_GPIO_C13                        BSP_GPIO_BUTTON
-#endif
+
+#define BSP_GPIO_A0                         BSP_GPIO_MOTOR_POS
+#define BSP_GPIO_A1                         BSP_GPIO_VBAT
+
+#define BSP_GPIO_C6                         BSP_GPIO_MOTOR1_PWM
+#define BSP_GPIO_B12                        BSP_GPIO_MOTOR1_1
+#define BSP_GPIO_B13                        BSP_GPIO_MOTOR1_2
+
+#define BSP_GPIO_C7                         BSP_GPIO_MOTOR2_PWM
+#define BSP_GPIO_B14                        BSP_GPIO_MOTOR2_1
+#define BSP_GPIO_B15                        BSP_GPIO_MOTOR2_2
+
+#define BSP_GPIO_C8                         BSP_GPIO_MOTOR3_PWM
+#define BSP_GPIO_A8                         BSP_GPIO_MOTOR3_1
+#define BSP_GPIO_A11                        BSP_GPIO_MOTOR3_2
+
+#define BSP_GPIO_C9                         BSP_GPIO_MOTOR4_PWM
+#define BSP_GPIO_A12                        BSP_GPIO_MOTOR4_1
+#define BSP_GPIO_A15                        BSP_GPIO_MOTOR4_2
 
 /**
  * TTY configuration
