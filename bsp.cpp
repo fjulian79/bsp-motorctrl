@@ -100,6 +100,9 @@ static inline void bspClockInit(void)
 
 #endif /* BSP_SYSTICK == BSP_ENABLED */
 
+    /* For the motor PWM pins we need AFIO */
+    LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
+    
     /* DMA is used for the tty etc. */
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
 

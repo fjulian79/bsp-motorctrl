@@ -55,6 +55,33 @@ void bspGpioInit(void)
    init.Pull = LL_GPIO_PULL_DOWN;
    bspGpioPinInit(BSP_GPIO_BUTTON, &init);
 
+   /* Motor ctrl pins */
+   init.Mode = LL_GPIO_MODE_OUTPUT;
+   init.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+   init.Pull = LL_GPIO_PULL_DOWN;
+   init.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+   bspGpioPinInit(BSP_GPIO_MOTOR1_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR1_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR2_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR2_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR3_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR3_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR4_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR4_2, &init);
+
+   /* Motor PWM Pins */
+   /* Full remap (CH1/PC6, CH2/PC7, CH3/PC8, CH4/PC9) */
+   LL_GPIO_AF_EnableRemap_TIM3();
+
+   init.Mode = LL_GPIO_MODE_ALTERNATE;
+   init.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+   init.Pull = LL_GPIO_PULL_DOWN;
+   init.Speed = LL_GPIO_SPEED_FREQ_HIGH;
+   bspGpioPinInit(BSP_GPIO_MOTOR1_PWM, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR2_PWM, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR3_PWM, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR4_PWM, &init);
+
    /* TTY */
    init.Mode = LL_GPIO_MODE_ALTERNATE;
    init.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
