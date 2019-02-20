@@ -103,6 +103,9 @@ static inline void bspClockInit(void)
     /* For the motor PWM pins we need AFIO */
     LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
     
+    /* Timer 3 is used for the motor */
+    LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM3);
+
     /* DMA is used for the tty etc. */
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
 

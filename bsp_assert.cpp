@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 #include <stm32f1xx_ll_system.h>
+#include <stm32f1xx_ll_tim.h>
 
 #include "bsp/bsp_gpio.h"
 #include "bsp/bsp_tty.h"
+#include "bsp/bsp_motor.h"
 
 #if BSP_ASSERT == BSP_ENABLED
 
@@ -19,6 +21,10 @@ void bspAssertDoCall(const char *pFunc, int line)
 
     /* Do here all what's needed to prevent any kind of hardware damage or 
      * unintended actions */
+    LL_TIM_OC_SetCompareCH1(TIM3, 0);
+    LL_TIM_OC_SetCompareCH2(TIM3, 0);
+    LL_TIM_OC_SetCompareCH3(TIM3, 0);
+    LL_TIM_OC_SetCompareCH4(TIM3, 0);
 
     while(1)
     {
