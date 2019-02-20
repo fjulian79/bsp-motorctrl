@@ -90,7 +90,7 @@ extern "C" void TTY_TXDMACH_IRQHandler(void)
     }
     else
     {
-        bspAssert(0);
+        bspDoAssert();
     }
 }
 

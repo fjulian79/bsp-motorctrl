@@ -32,7 +32,7 @@
 
 #if BSP_ASSERT == BSP_ENABLED
 
-void bspAssertDoCall(const char *pFunc, int line)
+void bspAbort(const char *pFunc, int line)
 {
     uint8_t idx = 0;
     char buffer[80];
@@ -42,12 +42,20 @@ void bspAssertDoCall(const char *pFunc, int line)
 
     snprintf (buffer, 80, "\nAssertion in %s(%d)\n", pFunc, line);
 
-    /* Do here all what's needed to prevent any kind of hardware damage or 
-     * unintended actions */
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+    /* ATTENTION: Do here all what's needed to prevent any kind of hardware 
+     * damage or unintended actions 
+     **/
+
     LL_TIM_OC_SetCompareCH1(TIM3, 0);
     LL_TIM_OC_SetCompareCH2(TIM3, 0);
     LL_TIM_OC_SetCompareCH3(TIM3, 0);
     LL_TIM_OC_SetCompareCH4(TIM3, 0);
+
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
     while(1)
     {
