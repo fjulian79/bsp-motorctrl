@@ -42,14 +42,14 @@
 #define BSP_FLASH_TIMEOUT               1
 
 /**
- * Bitmask of all the flash operation mode bits.
+ * @brief Bitmask of all the flash operation mode bits.
  */
 #define BSP_FLASH_MODEBITS                                      \
                                                                 \
         (FLASH_CR_PG | FLASH_CR_PER | FLASH_CR_MER | FLASH_CR_OPTPG)
 
 /**
- * Needed to make shure to hae only the desired mode bit set.
+ * @brief Needed to make shure to hae only the desired mode bit set.
  */
 #define BSP_FLASH_SETMODE(_mode)                                \
                                                                 \
@@ -60,13 +60,13 @@
         }while(0);
 
 /**
- * Like errno.
+ * @brief Like errno.
  */
 uint32_t bspFlashErr = 0;
 
 /**
- * Used to check the error flags and clean them if needed. Actually it seams as
- * further operations will fail until a set error flag gets cleared. 
+ * @brief Used to check the error flags and clean them if needed. Actually it 
+ * seams as further operations will fail until a set error flag gets cleared. 
  * 
  * In case of a error bspFlashGetErr() will provide the error code.
  * 
@@ -206,9 +206,10 @@ bspStatus_t bspFlashWaitForLastOperation(uint32_t timeout)
     /* guarantee minimum wait */
     timeout++;
 
-    /* Wait for the FLASH operation to complete by polling on BUSY flag to be reset.
-     * Even if the FLASH operation fails, the BUSY flag will be reset and an error
-     * flag will be set. The error check is performed by bspFlashSetErr();
+    /* Wait for the FLASH operation to complete by polling on BUSY flag to be 
+     * reset. Even if the FLASH operation fails, the BUSY flag will be reset 
+     * and an error flag will be set. The error check is performed by 
+     * bspFlashSetErr();
      * */
     while(__HAL_FLASH_GET_FLAG(FLASH_FLAG_BSY)) 
     { 

@@ -31,7 +31,7 @@
 #include <stm32f1xx_ll_tim.h>
 
 /**
- * 
+ * @brief Defines the controll pins for a single motor, see bspMotorDesc
  */
 typedef struct 
 {
@@ -41,7 +41,7 @@ typedef struct
 }bspMotor_t;
 
 /**
- * 
+ * @brief Used to map a motor id to gpio pins.
  */
 const bspMotor_t bspMotorDesc[BSP_NUM_MOTORS] = 
 {
@@ -134,7 +134,7 @@ void bspMotorSet(uint8_t id, int32_t val)
       val = -val;
    }
 
-bspMotorSetTimerCC(id, (uint32_t) val);
+   bspMotorSetTimerCC(id, (uint32_t) val);
 }
 
 void bspMotorStop(uint8_t id)

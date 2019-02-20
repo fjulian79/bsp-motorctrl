@@ -39,7 +39,7 @@
 #if BSP_TTY_TX_DMA == BSP_ENABLED
 
 /**
- * TTY Data shared with the interrupt.
+ * @brief TTY Data shared with the interrupt.
  */
 struct
 {
@@ -50,12 +50,12 @@ struct
 } ttyTxData;
 
 /**
- * Generic fifo instance operation on ttyData.Data
+ * @brief Generic fifo instance operation on ttyData.Data
  */
 Fifo *pTxFifo;
 
 /**
- * Starts a DMS transfer at the given address with the given length.
+ * @brief Starts a DMS transfer at the given address with the given length.
  *
  * @param pData     Address to start.
  * @param siz       Number of bytes to transfer.
@@ -69,7 +69,7 @@ void startDmaTx(uint8_t *pData, size_t siz)
 }
 
 /**
- * TTY Tx DMA Interrupt handler.
+ * @brief TTY Tx DMA Interrupt handler.
  */
 extern "C" void TTY_TXDMACH_IRQHandler(void)
 {
@@ -99,7 +99,7 @@ extern "C" void TTY_TXDMACH_IRQHandler(void)
 #if BSP_TTY_RX_IRQ == BSP_ENABLED
 
 /**
- * TTY Rx data shared with the interrupt.
+ * @brief TTY Rx data shared with the interrupt.
  */
 struct
 {
@@ -109,7 +109,7 @@ struct
 } ttyRxData;
 
 /**
- * Generic fifo instance operation on ttyData.Data
+ * @brief Generic fifo instance operation on ttyData.Data
  */
 Fifo *pRxFifo;
 
@@ -128,7 +128,7 @@ extern "C" void TTY_USARTx_IRQHandler(void)
 #endif /* BSP_TTY_RX_IRQ == BSP_ENABLED */
 
 /**
- * Called by c library for printf calls.
+ * @brief Called by c library for printf calls.
  *
  * @param file      The used Stream number.
  * @param pData     The data to write.
@@ -190,7 +190,7 @@ extern "C" int _write(int file, char *pData, int siz)
 }
 
 /**
- * Called by scanf calls to read from the given stream.
+ * @brief Called by scanf calls to read from the given stream.
  *
  * @param file  The stream to read from.
  * @param ptr   The buffer to write to.

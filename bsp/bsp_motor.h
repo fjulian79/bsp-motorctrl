@@ -30,12 +30,13 @@
 #include "bsp/bsp.h"
 
 /**
- *  @brief Defines the number of supported motors. 
+ * @brief Defines the number of supported motors. 
  */
 #define BSP_NUM_MOTORS              4
 
 /**
  * @brief Used to initialize the peripherals used to control the motors.
+ * 
  * Hence, gipos are intialized in bspGpioInit()
  */
 void bspMotorInit(void);
