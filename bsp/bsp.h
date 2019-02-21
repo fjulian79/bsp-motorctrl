@@ -31,7 +31,7 @@
 #include <stm32f1xx_ll_utils.h>
 
 /**
- * @brief Special GPIO Pin definitions
+ * @brief Definition of used GPIO lines.
  */
 #define BSP_GPIO_A5                         BSP_GPIO_LED
 #define BSP_GPIO_C13                        BSP_GPIO_BUTTON
@@ -54,6 +54,30 @@
 #define BSP_GPIO_C9                         BSP_GPIO_MOTOR4_PWM
 #define BSP_GPIO_A12                        BSP_GPIO_MOTOR4_1
 #define BSP_GPIO_A15                        BSP_GPIO_MOTOR4_2
+
+/**
+ * @brief Definitions of external interrupt lines.
+ */
+#define BSP_BUTTON_EXTI_LINE                LL_EXTI_LINE_13
+#define BSP_BUTTON_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
+#define BSP_BUTTON_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
+
+// #define BSP_ENC_M1_EXTI_LINE                LL_EXTI_LINE_13
+// #define BSP_ENC_M1_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
+// #define BSP_ENC_M1_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
+
+// #define BSP_ENC_M2_EXTI_LINE                LL_EXTI_LINE_13
+// #define BSP_ENC_M2_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
+// #define BSP_ENC_M2_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
+
+// #define BSP_ENC_M3_EXTI_LINE                LL_EXTI_LINE_13
+// #define BSP_ENC_M3_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
+// #define BSP_ENC_M3_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
+
+// #define BSP_ENC_M4_EXTI_LINE                LL_EXTI_LINE_13
+// #define BSP_ENC_M4_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
+// #define BSP_ENC_M4_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
+
 
 /**
  * @brief TTY configuration

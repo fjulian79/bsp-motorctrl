@@ -112,11 +112,11 @@ static inline void bspClockInit(void)
 #if BSP_SYSTICK == BSP_ENABLED
 
     SysTick->CTRL  |= SysTick_CTRL_TICKINT_Msk;
-    NVIC_SetPriority(SysTick_IRQn, BSP_SYSTICK_IRQ_PRIO);
+    NVIC_SetPriority(SysTick_IRQn, BSP_IRQPRIO_SYSTICK);
 
 #endif /* BSP_SYSTICK == BSP_ENABLED */
 
-    /* For the motor PWM pins we need AFIO */
+    /* For the motor PWM and external interrupts pins we need AFIO */
     LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
     
     /* Timer 3 is used for the motor */
