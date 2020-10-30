@@ -3,7 +3,7 @@
  * control PCB. It is designed to abstract access to HW features in a generic 
  * and simple way. Please note thet it should not conain any buissness logic.
  *
- * Copyright (C) 2019 Julian Friedrich
+ * Copyright (C) 2020 Julian Friedrich
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

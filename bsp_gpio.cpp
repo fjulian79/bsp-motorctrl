@@ -3,7 +3,7 @@
  * control PCB. It is designed to abstract access to HW features in a generic 
  * and simple way. Please note thet it should not conain any buissness logic.
  *
- * Copyright (C) 2019 Julian Friedrich
+ * Copyright (C) 2020 Julian Friedrich
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,11 +67,18 @@ void bspGpioInit(void)
    init.Pull = LL_GPIO_PULL_DOWN;
    init.Speed = LL_GPIO_SPEED_FREQ_MEDIUM;
    bspGpioPinInit(BSP_GPIO_LED, &init);
+   bspGpioPinInit(BSP_DEBUGPIN_0, &init);
 
    /* Button */
    init.Mode = LL_GPIO_MODE_INPUT;
    init.Pull = LL_GPIO_PULL_DOWN;
    bspGpioPinInit(BSP_GPIO_BUTTON, &init);
+
+   /* Analog inputs */
+   init.Mode = LL_GPIO_MODE_ANALOG;
+   bspGpioPinInit(BSP_GPIO_LIPO1, &init);
+   bspGpioPinInit(BSP_GPIO_LIPO2, &init);
+   bspGpioPinInit(BSP_GPIO_LIPO3, &init);
 
    /* Motor ctrl pins */
    init.Mode = LL_GPIO_MODE_OUTPUT;
@@ -87,7 +94,7 @@ void bspGpioInit(void)
    bspGpioPinInit(BSP_GPIO_MOTOR4_1, &init);
    bspGpioPinInit(BSP_GPIO_MOTOR4_2, &init);
 
-   /* Motor PWM Pins */
+   /* Motor PWM Ppns */
    /* Full remap (CH1/PC6, CH2/PC7, CH3/PC8, CH4/PC9) */
    LL_GPIO_AF_EnableRemap_TIM3();
 
@@ -99,6 +106,18 @@ void bspGpioInit(void)
    bspGpioPinInit(BSP_GPIO_MOTOR2_PWM, &init);
    bspGpioPinInit(BSP_GPIO_MOTOR3_PWM, &init);
    bspGpioPinInit(BSP_GPIO_MOTOR4_PWM, &init);
+
+   /* Motor Encoder pins */
+   init.Mode = LL_GPIO_MODE_INPUT;
+   init.Pull = LL_GPIO_MODE_FLOATING;
+   bspGpioPinInit(BSP_GPIO_MOTOR1_ENC_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR1_ENC_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR2_ENC_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR2_ENC_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR3_ENC_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR3_ENC_2, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR4_ENC_1, &init);
+   bspGpioPinInit(BSP_GPIO_MOTOR4_ENC_2, &init);
 
    /* TTY */
    init.Mode = LL_GPIO_MODE_ALTERNATE;

@@ -3,7 +3,7 @@
  * control PCB. It is designed to abstract access to HW features in a generic 
  * and simple way. Please note thet it should not conain any buissness logic.
  *
- * Copyright (C) 2019 Julian Friedrich
+ * Copyright (C) 2020 Julian Friedrich
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,24 +36,42 @@
 #define BSP_GPIO_A5                         BSP_GPIO_LED
 #define BSP_GPIO_C13                        BSP_GPIO_BUTTON
 
-#define BSP_GPIO_A0                         BSP_GPIO_MOTOR_POS
-#define BSP_GPIO_A1                         BSP_GPIO_VBAT
+#define BSP_GPIO_C1                         BSP_GPIO_LIPO1
+#define BSP_GPIO_C2                         BSP_GPIO_LIPO2
+#define BSP_GPIO_C3                         BSP_GPIO_LIPO3
 
 #define BSP_GPIO_C6                         BSP_GPIO_MOTOR1_PWM
 #define BSP_GPIO_B12                        BSP_GPIO_MOTOR1_1
 #define BSP_GPIO_B13                        BSP_GPIO_MOTOR1_2
+#define BSP_GPIO_A0                         BSP_GPIO_MOTOR1_ENC_1
+#define BSP_GPIO_A4                         BSP_GPIO_MOTOR1_ENC_2
 
 #define BSP_GPIO_C7                         BSP_GPIO_MOTOR2_PWM
 #define BSP_GPIO_B14                        BSP_GPIO_MOTOR2_1
 #define BSP_GPIO_B15                        BSP_GPIO_MOTOR2_2
+#define BSP_GPIO_A1                         BSP_GPIO_MOTOR2_ENC_1
+#define BSP_GPIO_A6                         BSP_GPIO_MOTOR2_ENC_2
 
 #define BSP_GPIO_C8                         BSP_GPIO_MOTOR3_PWM
 #define BSP_GPIO_A8                         BSP_GPIO_MOTOR3_1
 #define BSP_GPIO_A11                        BSP_GPIO_MOTOR3_2
+#define BSP_GPIO_B10                        BSP_GPIO_MOTOR3_ENC_1
+#define BSP_GPIO_B2                         BSP_GPIO_MOTOR3_ENC_2
 
 #define BSP_GPIO_C9                         BSP_GPIO_MOTOR4_PWM
 #define BSP_GPIO_A12                        BSP_GPIO_MOTOR4_1
-#define BSP_GPIO_A15                        BSP_GPIO_MOTOR4_2
+//#define BSP_GPIO_A15                        BSP_GPIO_MOTOR4_2 /* damaged on eval board */
+#define BSP_GPIO_C12                        BSP_GPIO_MOTOR4_2
+#define BSP_GPIO_B11                        BSP_GPIO_MOTOR4_ENC_1
+#define BSP_GPIO_A7                         BSP_GPIO_MOTOR4_ENC_2
+
+/**
+ * @brief Definition of analog input lines.
+ */
+#define BSP_ADCCH_LIPO1                     LL_ADC_CHANNEL_11
+#define BSP_ADCCH_LIPO2                     LL_ADC_CHANNEL_12
+#define BSP_ADCCH_LIPO3                     LL_ADC_CHANNEL_13
+#define BSP_ADCCH_INTTEMP                   LL_ADC_CHANNEL_TEMPSENSOR
 
 /**
  * @brief Definitions of external interrupt lines.
@@ -61,23 +79,6 @@
 #define BSP_BUTTON_EXTI_LINE                LL_EXTI_LINE_13
 #define BSP_BUTTON_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
 #define BSP_BUTTON_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
-
-// #define BSP_ENC_M1_EXTI_LINE                LL_EXTI_LINE_13
-// #define BSP_ENC_M1_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
-// #define BSP_ENC_M1_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
-
-// #define BSP_ENC_M2_EXTI_LINE                LL_EXTI_LINE_13
-// #define BSP_ENC_M2_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
-// #define BSP_ENC_M2_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
-
-// #define BSP_ENC_M3_EXTI_LINE                LL_EXTI_LINE_13
-// #define BSP_ENC_M3_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
-// #define BSP_ENC_M3_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
-
-// #define BSP_ENC_M4_EXTI_LINE                LL_EXTI_LINE_13
-// #define BSP_ENC_M4_GPIO_EXTI_LINE           LL_GPIO_AF_EXTI_LINE13
-// #define BSP_ENC_M4_GPIO_EXTI_PORT           LL_GPIO_AF_EXTI_PORTC
-
 
 /**
  * @brief TTY configuration
@@ -195,7 +196,7 @@
  */
 typedef enum
 {
-      BSP_OK,               ///<! In case of success
+      BSP_OK = 0,           ///<! In case of success
       BSP_IDLE,             ///<! Recourse idle
       BSP_ERR,              ///<! Unspecified error
       BSP_EBUSY,            ///<! Recourse busy
@@ -246,11 +247,16 @@ void bspDelayMs(uint32_t delay);
  * 
  * ATTENTION: Not tested yet!
  */
-bool bspInInterrupt();
+bool bspInInterrupt(void);
 
 /**
  * @brief Used to implement generic chip initialization
  */
 void bspChipInit(void);
+
+/**
+ * @brief used to trigger a CPU reset.
+ */
+void bspResetCpu(void);
 
 #endif /* BSP_MOTORCTRL_H_ */

@@ -3,7 +3,7 @@
  * control PCB. It is designed to abstract access to HW features in a generic 
  * and simple way. Please note thet it should not conain any buissness logic.
  *
- * Copyright (C) 2019 Julian Friedrich
+ * Copyright (C) 2020 Julian Friedrich
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,9 @@
 #include "bsp/bsp.h"
 #include "bsp/bsp_gpio.h"
 #include "bsp/bsp_tty.h"
+#include "bsp/bsp_motor.h"
+#include "bsp/bsp_adc.h" 
+#include "bsp/bsp_exti.h"
 
 inline bool bspIsInterrupt()
 {
@@ -119,11 +122,16 @@ static inline void bspClockInit(void)
     /* For the motor PWM and external interrupts pins we need AFIO */
     LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
     
-    /* Timer 3 is used for the motor */
+    /* Timer 2 and 3 are used for the motors */
     LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM3);
+    LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM2);
 
-    /* DMA is used for the tty etc. */
+    /* DMA is used for the tty, adc, etc. */
     LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
+
+    /* Enable ADC clock and set it's prescaler, max. ADC clock is 14MHz */
+    LL_RCC_SetADCClockSource(LL_RCC_ADC_CLKSRC_PCLK2_DIV_6);
+    LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_ADC1);
 
     TTY_USARTx_CLK_ENABLE();
 }
@@ -136,7 +144,31 @@ void bspChipInit(void)
     /* Configure all pins used by the bsp */
     bspGpioInit();
 
+    /* Intitialize the timers used for the motors */
+    bspMotorInit();
+
+    /* Initialize the analog digital converter */
+    bspAdcInit();
+
     /* Configure the tty */
     bspTTYInit(BSP_TTY_BAUDRATE);
+
+    /* External interrupts (Button)*/
+    bspExtiInit();
 }
 
+void bspResetCpu(void)
+{
+    NVIC_SystemReset();
+}
+
+void bspTask(uint32_t ticks)
+{
+    static uint32_t bspTicks = 0;
+    
+    if (ticks - bspTicks >= 100)
+    {
+        bspTicks = ticks;
+        bspAdcTask();
+    }
+}
